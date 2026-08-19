@@ -88,7 +88,7 @@ attack end to end.
 **The numbers.** At 99.9% for the model and the guardrail: failing closed gives 86.36 minutes of
 downtime a month instead of 43.2, so adding the guardrail doubled the expected downtime. Failing open
 keeps the model's availability and leaves 43.2 minutes a month uncovered instead. And the attack:
-`(\w+\s?)+\bsystem prompt\b` takes seconds rather than milliseconds on 24 characters, about 6 orders of
+`(\w+\s?)+\bsystem prompt\b` takes seconds rather than milliseconds on 24 characters, orders of
 magnitude more than any shipped pattern on the same input, over budget from 16 characters. Fail open,
 and the verdict is `allowed_unchecked` with exit code 1. Fail closed, and it is `refused`, along with
 everybody else's request.

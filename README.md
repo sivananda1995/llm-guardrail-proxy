@@ -117,8 +117,8 @@ instead: `43.2 minutes uncovered`, which is exactly the window an attacker wants
 
 They can cause it cheaply, and not by attacking the model. The obvious way to write "any run of words
 followed by a phrase" is `(\w+\s?)+\bsystem prompt\b`, which backtracks catastrophically: seconds rather
-than milliseconds at 24 characters, about `6 orders of magnitude` more than any shipped pattern on the
-same input, and over budget `from 16 characters` of input.
+than milliseconds at 24 characters, orders of magnitude more than any shipped pattern on the same
+input, and over budget `from 16 characters` of input.
 
 ```
 $ python experiments/redos_fail_open.py

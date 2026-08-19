@@ -258,6 +258,19 @@ def test_the_registry_covers_every_detector_the_shipped_policy_names(policy):
 #: bound would only buy flakiness.
 LINEAR_BUDGET_MS = 50.0
 
+#: A pattern that cannot match anything, used to measure what this machine costs for one linear pass
+#: over the payload. Every timing assertion below is expressed as a multiple of that measurement as
+#: well as an absolute ceiling, because a bound in milliseconds is a bound on the runner rather than
+#: on the code: this suite passed on three Pythons and failed in a fourth job on the same commit,
+#: which is what an absolute wall-clock assertion buys you on shared CI. The property under test is
+#: "linear, not exponential", and a ratio against a known-linear pass is what states it.
+CALIBRATION = re.compile(r"zzq-no-such-substring-zzq")
+
+#: How many times a known-linear pass a shipped pattern is allowed to cost. Generous, because the
+#: failure being guarded against is exponential: the naive pattern is six orders of magnitude past
+#: this, so a factor of 400 separates the two without ever separating a busy runner from a bug.
+LINEAR_MULTIPLE = 400.0
+
 ADVERSARIAL = [
     "a" * 4000,
     "ignore " * 400,
@@ -270,21 +283,33 @@ ADVERSARIAL = [
 ]
 
 
+def budget_for(payload: str, multiple: float = LINEAR_MULTIPLE) -> float:
+    """The ceiling for one pass over this payload on this machine.
+
+    The larger of an absolute bound and a multiple of a known-linear pass. Both, rather than either:
+    the ratio keeps the assertion meaningful on a slow runner, and the absolute keeps it meaningful
+    if the calibration itself is measured as zero on a fast one.
+    """
+    calibration = time_pattern(CALIBRATION, payload)
+    return max(LINEAR_BUDGET_MS, multiple * calibration)
+
+
 @pytest.mark.parametrize("pattern", [*OVERRIDE, *EXFILTRATION, CARD_RUN])
 @pytest.mark.parametrize("payload", ADVERSARIAL)
 def test_every_shipped_pattern_is_linear_on_adversarial_input(pattern, payload):
-    assert time_pattern(pattern, payload) < LINEAR_BUDGET_MS
+    elapsed = time_pattern(pattern, payload)
+    ceiling = budget_for(payload)
+    assert elapsed < ceiling, f"{elapsed:.3f} ms against a ceiling of {ceiling:.3f} ms"
 
 
 @pytest.mark.parametrize("payload", ADVERSARIAL)
 def test_every_shipped_detector_is_linear_on_adversarial_input(payload, system_prompt):
+    ceiling = budget_for(payload, LINEAR_MULTIPLE * 4)
     for name in REGISTRY:
-        started = time_pattern(re.compile(re.escape("never matches")), payload)
-        assert started >= 0.0
         elapsed = _timed(lambda name=name: run_detector(name, payload,
                                                         system_prompt=system_prompt,
                                                         decoded=()))
-        assert elapsed < LINEAR_BUDGET_MS * 4, f"{name} took {elapsed:.1f} ms"
+        assert elapsed < ceiling, f"{name} took {elapsed:.1f} ms against {ceiling:.1f} ms"
 
 
 def _timed(work) -> float:
@@ -301,14 +326,15 @@ def test_the_naive_pattern_blows_up_and_the_shipped_one_does_not():
     """The comparison the whole argument rests on, measured in one test.
 
     The naive pattern is not shipped, and this is the only place it runs. Twenty characters puts it
-    two orders of magnitude past every shipped pattern, and the assertion is a ratio rather than an
-    absolute so it means the same thing on any machine.
+    orders of magnitude past every shipped pattern, and both assertions are ratios so they mean the
+    same thing on any machine. The second one was `shipped < 1.0` ms until a CI job on a loaded
+    runner disagreed with three others on the same commit.
     """
     payload = "a" * 20
     naive = time_pattern(NAIVE_EXFILTRATION, payload)
     shipped = max(time_pattern(pattern, payload) for pattern in EXFILTRATION)
     assert naive > shipped * 100
-    assert shipped < 1.0
+    assert shipped < budget_for(payload)
 
 
 def test_the_redos_curve_grows_faster_than_linearly():
@@ -317,8 +343,11 @@ def test_the_redos_curve_grows_faster_than_linearly():
     times = [elapsed for _, elapsed in points]
     assert lengths == [12, 16, 20]
     assert times[2] > times[1] > times[0]
-    # Doubling roughly four characters at a time. A linear pattern would grow by a factor near one.
-    assert times[2] / max(times[1], 1e-9) > 4
+    # Four more characters multiply the work by about sixteen here, and a linear pattern would grow
+    # by a factor near one. The bound is 2.5 rather than the measured 16 because the numerator and
+    # the denominator are separate measurements: a stall inside the shorter one shrinks the ratio
+    # without saying anything about the pattern.
+    assert times[2] / max(times[1], 1e-9) > 2.5
 
 
 def test_the_naive_pattern_is_not_in_the_registry():

@@ -89,8 +89,17 @@ jobs:
           cache: pip
       - name: Install
         run: pip install -e ".[dev]"
+      # The suite runs as its own step, rather than inside the collector, so a failing test shows up
+      # as a failing test. When the collector ran it, a red suite surfaced as a CalledProcessError
+      # traceback from a metrics script, which is a slow thing to diagnose from the Actions UI.
+      - name: Test, writing the reports the collector reads
+        run: |
+          mkdir -p reports
+          python -m pytest tests -q \
+            --junitxml=reports/junit.xml \
+            --cov=guardrail --cov-report=json:reports/coverage.json
       - name: Re-run every experiment and re-measure every claim
-        run: python tools/collect_metrics.py
+        run: python tools/collect_metrics.py --skip-tests
       - name: Fail if a document disagrees
         run: python tools/check_numbers.py
       - name: Build the report

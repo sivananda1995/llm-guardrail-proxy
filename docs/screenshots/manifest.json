@@ -22,7 +22,7 @@
       "text": "worst lookback measured",
       "visible": true
     },
-    "bytes": 182627,
+    "bytes": 182158,
     "caption": "precision falling below the blocking floor, and the pattern that blows its budget",
     "framed": {
       "from": "precision against prevalence, at the rate this corpus can support",

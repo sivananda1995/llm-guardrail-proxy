@@ -5,30 +5,30 @@
     {
       "chars": 12,
       "naive_ms": 0.0002,
-      "shipped_ms": 0.0001,
+      "shipped_ms": 0.0002,
       "over_budget": false
     },
     {
       "chars": 16,
-      "naive_ms": 9.009,
-      "shipped_ms": 0.0004,
+      "naive_ms": 10.5993,
+      "shipped_ms": 0.0005,
       "over_budget": true
     },
     {
       "chars": 20,
-      "naive_ms": 155.2157,
-      "shipped_ms": 0.0003,
+      "naive_ms": 182.1609,
+      "shipped_ms": 0.0005,
       "over_budget": true
     },
     {
       "chars": 24,
-      "naive_ms": 2546.8768,
-      "shipped_ms": 0.0004,
+      "naive_ms": 2933.8647,
+      "shipped_ms": 0.0005,
       "over_budget": true
     }
   ],
   "first_length_over_budget": 16,
-  "naive_over_shipped_at_worst": 6547241.4,
+  "naive_over_shipped_at_worst": 5987478.3,
   "outcomes": {
     "fails open": {
       "mode": "open",

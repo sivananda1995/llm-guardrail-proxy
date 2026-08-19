@@ -64,10 +64,14 @@ ANCHORS: dict[str, list[str]] = {
     "benign_needed_for_block": ["{} clean samples", "{} labelled samples"],
     "benign_measured_widest": ["corpus has {}", "{} benign samples resolve"],
     "unsupported_blocks": ["{} of 3 blocking", "{} blocking actions"],
-    # Deliberately unanchored: an absolute duration and a ratio derived from it move between
-    # machines, so the prose says "seconds rather than milliseconds" and quotes no digits. The order
-    # of magnitude is stable and is the figure worth citing.
-    "redos_ratio_log10": ["{} orders of magnitude"],
+    # Deliberately unanchored, all three of them: an absolute duration, a ratio derived from it, and
+    # the order of magnitude of that ratio all move with the machine. The magnitude looked stable
+    # enough to anchor and was not: it is 6 here, and one job on a loaded runner is enough to
+    # make it 5 and fail a build over a claim that was never about the code. The prose says "orders
+    # of magnitude" and quotes no digit, the measured values stay in metrics.json for the report,
+    # the claim that the naive pattern costs more than 100x the shipped one is asserted by
+    # tests/test_detect.py, where a claim about code belongs.
+    "redos_ratio_log10": [],
     "redos_first_over_budget": ["from {} characters", "{} characters of input"],
     "oracle_refusals_quiet": ["{} refusal text", "{} distinct refusal"],
     "oracle_refusals_explaining": ["{} distinct refusals", "identifies {} detectors"],

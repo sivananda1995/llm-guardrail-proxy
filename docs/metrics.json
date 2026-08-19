@@ -22,8 +22,8 @@
     "benign_needed_for_block": 2499,
     "benign_measured_widest": 34,
     "unsupported_blocks": 3,
-    "redos_naive_ms_at_24": 2547,
-    "redos_ratio": 6547241,
+    "redos_naive_ms_at_24": 2934,
+    "redos_ratio": 5987478,
     "redos_ratio_log10": 6,
     "redos_first_over_budget": 16,
     "redos_fail_open_verdict": "allowed_unchecked",
@@ -114,9 +114,7 @@
       "{} of 3 blocking",
       "{} blocking actions"
     ],
-    "redos_ratio_log10": [
-      "{} orders of magnitude"
-    ],
+    "redos_ratio_log10": [],
     "redos_first_over_budget": [
       "from {} characters",
       "{} characters of input"

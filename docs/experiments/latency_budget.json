@@ -1,12 +1,12 @@
 {
   "cases": 28,
   "repeats": 5,
-  "best_total_ms": 0.956,
-  "worst_total_ms": 1.214,
-  "spread_percent": 27.0,
-  "per_request_ms": 0.034,
+  "best_total_ms": 1.362,
+  "worst_total_ms": 1.547,
+  "spread_percent": 13.6,
+  "per_request_ms": 0.049,
   "reserved_ms_per_request": 42.0,
-  "share_of_reserved_used": 0.0008,
+  "share_of_reserved_used": 0.0012,
   "declared_total_ms": 45.0,
   "lookback_rows": [
     {
