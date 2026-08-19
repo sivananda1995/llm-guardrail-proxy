@@ -1,0 +1,138 @@
+# The policy for one route. Everything the proxy does is decided here rather than in code.
+#
+# Three things in this file are not in most guardrail configurations, and each exists because leaving it
+# implicit is how a guardrail becomes untrustworthy.
+#
+# **`on_unavailable`.** What the proxy does when the guardrail itself cannot answer. Every proxy has this
+# behaviour and most have it by accident, which means it is whatever the exception handler happened to
+# do. It is a policy decision, it is different per route, and it is written down.
+#
+# **`stream.lookback_chars`.** How much of a streaming response the enforcer holds back so it can match
+# across chunk boundaries. This is the same number as "how many characters of a leaked secret reach the
+# client before the block fires", which is the honest way to describe it, and it is the number nobody
+# writes down. See ADR-001.
+#
+# **`prevalence`.** The share of traffic on this route that is genuinely an attack. It is an estimate,
+# and the reason it is here is that precision depends on it far more than on the detector: a detector at
+# 99% true positive and 1% false positive is 98% precise at 50% prevalence and under 1% precise at one
+# in ten thousand. A policy that sets a detector to block without stating the prevalence it assumed is a
+# policy nobody can evaluate.
+
+version: 1
+route: support-assistant
+description: >
+  A customer support assistant with access to account tooling. Users are authenticated but untrusted,
+  and the model's output goes straight to a human, so an output-side leak is a disclosure rather than a
+  logged anomaly.
+
+# The estimated share of requests on this route that are a genuine attack. Used only to compute the
+# precision a detector would actually deliver here, never to change a verdict.
+prevalence: 0.0004
+
+detectors:
+  # Structure and entropy, not a word list. A key that matches the issuer's documented shape is a key
+  # whatever it is called, and a high-entropy run that matches nothing is worth a warning and not a
+  # block.
+  secret_pattern:
+    action: block
+    where: [prompt, response]
+    # Prefix-safe: a match can be decided from a bounded window, so this detector can run on a stream.
+    stream_safe: true
+    budget_ms: 6
+    # A documented key shape is reported at high confidence and a high-entropy run at low, and only the
+    # first blocks. Without this line a 32 character git hash in a support answer blocked the response,
+    # which is what happens when one action covers a detector's confident and speculative halves.
+    min_confidence: high
+    # Reads the text as sent, not the canonical form. A key's shape is case sensitive, so the case folding
+    # that makes injection patterns robust destroys it: `AKIAIOSFODNN7EXAMPLE` folded is not a key any
+    # more, and the first version of this policy silently stopped detecting credentials in prompts. A
+    # key written with a Cyrillic А is not that key either, so there is nothing to gain from the fold.
+    reads: raw
+
+  pii_email:
+    action: redact
+    where: [response]
+    stream_safe: true
+    budget_ms: 4
+
+  pii_card:
+    reads: raw
+    # A Luhn-valid card number in a response is a disclosure. Redacting rather than blocking because a
+    # support answer that contains a card number usually contains a legitimate answer too.
+    action: redact
+    where: [response]
+    stream_safe: true
+    budget_ms: 5
+
+  injection_override:
+    # The classic "ignore previous instructions" family. Flagged rather than blocked, and the reason is
+    # arithmetic rather than generosity: at this route's prevalence a blocking verdict here costs far
+    # more in false positives than the attacks it stops. See ADR-004.
+    action: flag
+    where: [prompt]
+    stream_safe: true
+    budget_ms: 8
+
+  injection_exfiltration:
+    # Asking the model to repeat its own instructions, or to encode them. Distinct from the override
+    # family because the target is the system prompt rather than the behaviour, and because it is a
+    # narrower pattern with a much lower false-positive rate, which is why this one blocks.
+    action: block
+    where: [prompt]
+    stream_safe: true
+    budget_ms: 7
+
+  system_prompt_echo:
+    # The output-side half of the same attack. A response that contains a distinctive span of the system
+    # prompt is a leak whether or not the request looked like one, which is why the output side is
+    # checked independently rather than trusted because the input passed.
+    action: block
+    where: [response]
+    # NOT prefix-safe: matching a long span needs more context than a bounded window, so on a stream
+    # this detector runs on what has accumulated so far and can only fire late. The report says so.
+    stream_safe: false
+    budget_ms: 9
+
+  encoded_payload:
+    # Something arrived base64 encoded and decoded to text. Not an attack by itself, and a strong signal
+    # in combination, so it annotates rather than deciding.
+    action: flag
+    where: [prompt]
+    stream_safe: true
+    budget_ms: 3
+
+stream:
+  # Characters held back so a pattern can be matched across a chunk boundary. Also, and this is the same
+  # statement, the maximum number of characters of a detected secret that reach the client before the
+  # stream is cut. 0 means no lookback and no cross-boundary matching; a large value approaches
+  # buffering the whole response and giving up streaming.
+  lookback_chars: 96
+  # Refuse to start streaming until this many characters are available. Zero keeps time to first token
+  # low and is what the route wants.
+  warmup_chars: 0
+  # What the client receives when a stream is cut part way. Constant text, because a message that
+  # described the finding would be a free oracle: an attacker probes until the message changes.
+  cut_message: "\n\n[response withheld]"
+
+budget:
+  # The whole guardrail's share of the request. Detector budgets above must sum to no more than this,
+  # and the loader checks it, because a budget that is not enforced is a comment.
+  total_ms: 45
+  # What happens when a detector exceeds its budget or raises.
+  #
+  # `closed` means the request fails. `open` means it proceeds unchecked. Neither is safe: fail-closed
+  # turns a guardrail outage into a product outage, and fail-open hands an attacker a way to disable the
+  # guardrail by making it slow, which `experiments/redos_fail_open.py` demonstrates against a naive
+  # regex. This route fails closed on the input side and open on the output side, which is the least bad
+  # split and is a decision rather than an accident.
+  on_unavailable:
+    prompt: closed
+    response: open
+
+response:
+  # Every refusal is byte-identical regardless of which detector fired. An attacker who can tell
+  # "blocked for a secret" from "blocked for injection" has a labelled oracle and can search against it;
+  # `experiments/bypass_matrix.py` reports how few probes that takes.
+  refusal: "I can't help with that request."
+  # Whether the refusal names the detector. False on any route reachable by an untrusted user.
+  explain: false

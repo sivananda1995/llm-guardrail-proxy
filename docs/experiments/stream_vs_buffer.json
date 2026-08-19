@@ -1,0 +1,727 @@
+{
+  "lookbacks": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    48,
+    96
+  ],
+  "policy_lookback": 96,
+  "completions": {
+    "leaks_aws_key": {
+      "rows": [
+        {
+          "lookback": 0,
+          "leaked_chars": 16,
+          "emitted_after_match": 16,
+          "first_emit_at_char": 9,
+          "cut": true,
+          "emitted_chars": 155,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 4,
+          "leaked_chars": 12,
+          "emitted_after_match": 12,
+          "first_emit_at_char": 9,
+          "cut": true,
+          "emitted_chars": 151,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 8,
+          "leaked_chars": 8,
+          "emitted_after_match": 8,
+          "first_emit_at_char": 9,
+          "cut": true,
+          "emitted_chars": 147,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 12,
+          "leaked_chars": 4,
+          "emitted_after_match": 4,
+          "first_emit_at_char": 15,
+          "cut": true,
+          "emitted_chars": 143,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 16,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 19,
+          "cut": true,
+          "emitted_chars": 139,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 20,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 27,
+          "cut": true,
+          "emitted_chars": 135,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 24,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 27,
+          "cut": true,
+          "emitted_chars": 131,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 48,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 51,
+          "cut": true,
+          "emitted_chars": 107,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 96,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 99,
+          "cut": true,
+          "emitted_chars": 59,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": null,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 274,
+          "cut": true,
+          "emitted_chars": 21,
+          "detectors": [
+            "secret_pattern"
+          ]
+        }
+      ],
+      "zero_leak_at": 16,
+      "worst_leak": 16,
+      "first_emit_at_zero_leak": 19,
+      "buffered_first_emit": 274
+    },
+    "leaks_key_early": {
+      "rows": [
+        {
+          "lookback": 0,
+          "leaked_chars": 19,
+          "emitted_after_match": 19,
+          "first_emit_at_char": 9,
+          "cut": true,
+          "emitted_chars": 40,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 4,
+          "leaked_chars": 15,
+          "emitted_after_match": 15,
+          "first_emit_at_char": 9,
+          "cut": true,
+          "emitted_chars": 36,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 8,
+          "leaked_chars": 11,
+          "emitted_after_match": 11,
+          "first_emit_at_char": 9,
+          "cut": true,
+          "emitted_chars": 32,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 12,
+          "leaked_chars": 7,
+          "emitted_after_match": 7,
+          "first_emit_at_char": 15,
+          "cut": true,
+          "emitted_chars": 28,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 16,
+          "leaked_chars": 3,
+          "emitted_after_match": 3,
+          "first_emit_at_char": 19,
+          "cut": true,
+          "emitted_chars": 24,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 20,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": null,
+          "cut": true,
+          "emitted_chars": 21,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 24,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": null,
+          "cut": true,
+          "emitted_chars": 21,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 48,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": null,
+          "cut": true,
+          "emitted_chars": 21,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 96,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": null,
+          "cut": true,
+          "emitted_chars": 21,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": null,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 87,
+          "cut": true,
+          "emitted_chars": 21,
+          "detectors": [
+            "secret_pattern"
+          ]
+        }
+      ],
+      "zero_leak_at": 20,
+      "worst_leak": 19,
+      "first_emit_at_zero_leak": null,
+      "buffered_first_emit": 87
+    },
+    "leaks_key_late": {
+      "rows": [
+        {
+          "lookback": 0,
+          "leaked_chars": 12,
+          "emitted_after_match": 12,
+          "first_emit_at_char": 9,
+          "cut": true,
+          "emitted_chars": 252,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 4,
+          "leaked_chars": 8,
+          "emitted_after_match": 8,
+          "first_emit_at_char": 9,
+          "cut": true,
+          "emitted_chars": 248,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 8,
+          "leaked_chars": 4,
+          "emitted_after_match": 4,
+          "first_emit_at_char": 9,
+          "cut": true,
+          "emitted_chars": 244,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 12,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 15,
+          "cut": true,
+          "emitted_chars": 240,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 16,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 19,
+          "cut": true,
+          "emitted_chars": 236,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 20,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 27,
+          "cut": true,
+          "emitted_chars": 232,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 24,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 27,
+          "cut": true,
+          "emitted_chars": 228,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 48,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 51,
+          "cut": true,
+          "emitted_chars": 204,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": 96,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 99,
+          "cut": true,
+          "emitted_chars": 156,
+          "detectors": [
+            "secret_pattern"
+          ]
+        },
+        {
+          "lookback": null,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 240,
+          "cut": true,
+          "emitted_chars": 21,
+          "detectors": [
+            "secret_pattern"
+          ]
+        }
+      ],
+      "zero_leak_at": 12,
+      "worst_leak": 12,
+      "first_emit_at_zero_leak": 15,
+      "buffered_first_emit": 240
+    },
+    "leaks_card": {
+      "rows": [
+        {
+          "lookback": 0,
+          "leaked_chars": 12,
+          "emitted_after_match": 12,
+          "first_emit_at_char": 9,
+          "cut": false,
+          "emitted_chars": 148,
+          "detectors": [
+            "pii_card"
+          ]
+        },
+        {
+          "lookback": 4,
+          "leaked_chars": 8,
+          "emitted_after_match": 8,
+          "first_emit_at_char": 9,
+          "cut": false,
+          "emitted_chars": 148,
+          "detectors": [
+            "pii_card"
+          ]
+        },
+        {
+          "lookback": 8,
+          "leaked_chars": 4,
+          "emitted_after_match": 4,
+          "first_emit_at_char": 9,
+          "cut": false,
+          "emitted_chars": 148,
+          "detectors": [
+            "pii_card"
+          ]
+        },
+        {
+          "lookback": 12,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 15,
+          "cut": false,
+          "emitted_chars": 147,
+          "detectors": [
+            "pii_card"
+          ]
+        },
+        {
+          "lookback": 16,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 19,
+          "cut": false,
+          "emitted_chars": 147,
+          "detectors": [
+            "pii_card"
+          ]
+        },
+        {
+          "lookback": 20,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 27,
+          "cut": false,
+          "emitted_chars": 147,
+          "detectors": [
+            "pii_card"
+          ]
+        },
+        {
+          "lookback": 24,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 27,
+          "cut": false,
+          "emitted_chars": 147,
+          "detectors": [
+            "pii_card"
+          ]
+        },
+        {
+          "lookback": 48,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 51,
+          "cut": false,
+          "emitted_chars": 147,
+          "detectors": [
+            "pii_card"
+          ]
+        },
+        {
+          "lookback": 96,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 99,
+          "cut": false,
+          "emitted_chars": 147,
+          "detectors": [
+            "pii_card"
+          ]
+        },
+        {
+          "lookback": null,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 148,
+          "cut": false,
+          "emitted_chars": 147,
+          "detectors": [
+            "pii_card"
+          ]
+        }
+      ],
+      "zero_leak_at": 12,
+      "worst_leak": 12,
+      "first_emit_at_zero_leak": 15,
+      "buffered_first_emit": 148
+    },
+    "leaks_email": {
+      "rows": [
+        {
+          "lookback": 0,
+          "leaked_chars": 30,
+          "emitted_after_match": 30,
+          "first_emit_at_char": 9,
+          "cut": false,
+          "emitted_chars": 148,
+          "detectors": [
+            "pii_email"
+          ]
+        },
+        {
+          "lookback": 4,
+          "leaked_chars": 26,
+          "emitted_after_match": 26,
+          "first_emit_at_char": 9,
+          "cut": false,
+          "emitted_chars": 148,
+          "detectors": [
+            "pii_email"
+          ]
+        },
+        {
+          "lookback": 8,
+          "leaked_chars": 22,
+          "emitted_after_match": 22,
+          "first_emit_at_char": 9,
+          "cut": false,
+          "emitted_chars": 148,
+          "detectors": [
+            "pii_email"
+          ]
+        },
+        {
+          "lookback": 12,
+          "leaked_chars": 18,
+          "emitted_after_match": 18,
+          "first_emit_at_char": 15,
+          "cut": false,
+          "emitted_chars": 148,
+          "detectors": [
+            "pii_email"
+          ]
+        },
+        {
+          "lookback": 16,
+          "leaked_chars": 14,
+          "emitted_after_match": 14,
+          "first_emit_at_char": 19,
+          "cut": false,
+          "emitted_chars": 148,
+          "detectors": [
+            "pii_email"
+          ]
+        },
+        {
+          "lookback": 20,
+          "leaked_chars": 10,
+          "emitted_after_match": 10,
+          "first_emit_at_char": 27,
+          "cut": false,
+          "emitted_chars": 148,
+          "detectors": [
+            "pii_email"
+          ]
+        },
+        {
+          "lookback": 24,
+          "leaked_chars": 6,
+          "emitted_after_match": 6,
+          "first_emit_at_char": 27,
+          "cut": false,
+          "emitted_chars": 148,
+          "detectors": [
+            "pii_email"
+          ]
+        },
+        {
+          "lookback": 48,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 51,
+          "cut": false,
+          "emitted_chars": 129,
+          "detectors": [
+            "pii_email"
+          ]
+        },
+        {
+          "lookback": 96,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 99,
+          "cut": false,
+          "emitted_chars": 129,
+          "detectors": [
+            "pii_email"
+          ]
+        },
+        {
+          "lookback": null,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 148,
+          "cut": false,
+          "emitted_chars": 129,
+          "detectors": [
+            "pii_email"
+          ]
+        }
+      ],
+      "zero_leak_at": 48,
+      "worst_leak": 30,
+      "first_emit_at_zero_leak": 51,
+      "buffered_first_emit": 148
+    },
+    "echoes_prompt": {
+      "rows": [
+        {
+          "lookback": 0,
+          "leaked_chars": 35,
+          "emitted_after_match": 35,
+          "first_emit_at_char": 9,
+          "cut": true,
+          "emitted_chars": 88,
+          "detectors": [
+            "system_prompt_echo"
+          ]
+        },
+        {
+          "lookback": 4,
+          "leaked_chars": 31,
+          "emitted_after_match": 31,
+          "first_emit_at_char": 9,
+          "cut": true,
+          "emitted_chars": 84,
+          "detectors": [
+            "system_prompt_echo"
+          ]
+        },
+        {
+          "lookback": 8,
+          "leaked_chars": 27,
+          "emitted_after_match": 27,
+          "first_emit_at_char": 9,
+          "cut": true,
+          "emitted_chars": 80,
+          "detectors": [
+            "system_prompt_echo"
+          ]
+        },
+        {
+          "lookback": 12,
+          "leaked_chars": 23,
+          "emitted_after_match": 23,
+          "first_emit_at_char": 15,
+          "cut": true,
+          "emitted_chars": 76,
+          "detectors": [
+            "system_prompt_echo"
+          ]
+        },
+        {
+          "lookback": 16,
+          "leaked_chars": 19,
+          "emitted_after_match": 19,
+          "first_emit_at_char": 19,
+          "cut": true,
+          "emitted_chars": 72,
+          "detectors": [
+            "system_prompt_echo"
+          ]
+        },
+        {
+          "lookback": 20,
+          "leaked_chars": 15,
+          "emitted_after_match": 15,
+          "first_emit_at_char": 27,
+          "cut": true,
+          "emitted_chars": 68,
+          "detectors": [
+            "system_prompt_echo"
+          ]
+        },
+        {
+          "lookback": 24,
+          "leaked_chars": 11,
+          "emitted_after_match": 11,
+          "first_emit_at_char": 27,
+          "cut": true,
+          "emitted_chars": 64,
+          "detectors": [
+            "system_prompt_echo"
+          ]
+        },
+        {
+          "lookback": 48,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 51,
+          "cut": true,
+          "emitted_chars": 40,
+          "detectors": [
+            "system_prompt_echo"
+          ]
+        },
+        {
+          "lookback": 96,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": null,
+          "cut": true,
+          "emitted_chars": 21,
+          "detectors": [
+            "system_prompt_echo"
+          ]
+        },
+        {
+          "lookback": null,
+          "leaked_chars": 0,
+          "emitted_after_match": 0,
+          "first_emit_at_char": 252,
+          "cut": true,
+          "emitted_chars": 21,
+          "detectors": [
+            "secret_pattern",
+            "system_prompt_echo"
+          ]
+        }
+      ],
+      "zero_leak_at": 48,
+      "worst_leak": 35,
+      "first_emit_at_zero_leak": 51,
+      "buffered_first_emit": 252
+    }
+  },
+  "smallest_safe_lookback": 48,
+  "note": "every character held back is a character that cannot leak and a character of latency before the first byte; there is no setting where both columns are zero"
+}

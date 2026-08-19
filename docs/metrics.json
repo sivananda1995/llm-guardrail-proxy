@@ -1,0 +1,154 @@
+{
+  "metrics": {
+    "version": "0.6.0",
+    "tests_total": 706,
+    "coverage_line_pct": 100.0,
+    "coverage_branch_pct": 100.0,
+    "corpus_cases": 28,
+    "corpus_as_declared": 28,
+    "corpus_benign": 10,
+    "corpus_attacks": 10,
+    "corpus_evasions": 8,
+    "surviving_evasions": 2,
+    "detectors": 7,
+    "worst_leak_chars": 16,
+    "zero_leak_lookback": 16,
+    "shipped_lookback": 96,
+    "buffered_first_emit_chars": 274,
+    "smallest_safe_lookback": 48,
+    "signal_false_positives": 5,
+    "signal_fpr_pct": 14.7,
+    "resolved_precision_pct": 1.34,
+    "benign_needed_for_block": 2499,
+    "benign_measured_widest": 34,
+    "unsupported_blocks": 3,
+    "redos_naive_ms_at_24": 2547,
+    "redos_ratio": 6547241,
+    "redos_ratio_log10": 6,
+    "redos_first_over_budget": 16,
+    "redos_fail_open_verdict": "allowed_unchecked",
+    "redos_fail_closed_verdict": "refused",
+    "oracle_refusals_quiet": 1,
+    "oracle_refusals_explaining": 3,
+    "budget_share_used_pct": 0.1,
+    "latency_per_char_saved": 1.69,
+    "downtime_minutes_closed": 86.36,
+    "uncovered_minutes_open": 43.2
+  },
+  "anchors": {
+    "tests_total": [
+      "{} tests"
+    ],
+    "coverage_line_pct": [
+      "{}% line"
+    ],
+    "coverage_branch_pct": [
+      "{}% branch"
+    ],
+    "corpus_cases": [
+      "{} cases",
+      "{} labelled cases",
+      "all {} cases"
+    ],
+    "corpus_as_declared": [
+      "{}/28",
+      "{} of 28"
+    ],
+    "corpus_benign": [
+      "{} benign"
+    ],
+    "corpus_attacks": [
+      "{} attacks"
+    ],
+    "corpus_evasions": [
+      "{} evasions"
+    ],
+    "surviving_evasions": [
+      "{} evasions still work",
+      "{} surviving evasions"
+    ],
+    "detectors": [
+      "{} detectors"
+    ],
+    "worst_leak_chars": [
+      "leaks {} characters",
+      "{} characters of the key"
+    ],
+    "zero_leak_lookback": [
+      "zero at {}",
+      "{} characters of lookback"
+    ],
+    "shipped_lookback": [
+      "holds back {}",
+      "lookback of {}"
+    ],
+    "buffered_first_emit_chars": [
+      "{} characters before",
+      "waits for {}"
+    ],
+    "smallest_safe_lookback": [
+      "{} characters is enough",
+      "safe at {}"
+    ],
+    "signal_false_positives": [
+      "{} benign samples",
+      "{} of the benign"
+    ],
+    "signal_fpr_pct": [
+      "{}% as a signal",
+      "{}% false positive"
+    ],
+    "resolved_precision_pct": [
+      "{}% precise",
+      "precision of {}%"
+    ],
+    "benign_needed_for_block": [
+      "{} clean samples",
+      "{} labelled samples"
+    ],
+    "benign_measured_widest": [
+      "corpus has {}",
+      "{} benign samples resolve"
+    ],
+    "unsupported_blocks": [
+      "{} of 3 blocking",
+      "{} blocking actions"
+    ],
+    "redos_ratio_log10": [
+      "{} orders of magnitude"
+    ],
+    "redos_first_over_budget": [
+      "from {} characters",
+      "{} characters of input"
+    ],
+    "oracle_refusals_quiet": [
+      "{} refusal text",
+      "{} distinct refusal"
+    ],
+    "oracle_refusals_explaining": [
+      "{} distinct refusals",
+      "identifies {} detectors"
+    ],
+    "latency_per_char_saved": [
+      "{} characters of latency"
+    ],
+    "downtime_minutes_closed": [
+      "{} minutes a month",
+      "{} minutes of downtime"
+    ],
+    "uncovered_minutes_open": [
+      "{} minutes uncovered",
+      "{} minutes a month uncovered"
+    ]
+  },
+  "checked_documents": [
+    "README.md",
+    "docs/defense-guide.md",
+    "docs/adr/ADR-001-you-cannot-unsend-a-byte.md",
+    "docs/adr/ADR-002-one-canonical-form-is-not-enough.md",
+    "docs/adr/ADR-003-there-is-no-third-option.md",
+    "docs/adr/ADR-004-the-corpus-cannot-justify-a-block.md",
+    "docs/adr/ADR-005-what-this-cannot-measure.md"
+  ],
+  "note": "every value here is produced by running the suite and the experiments; tools/check_numbers.py fails the build when a document disagrees with it"
+}

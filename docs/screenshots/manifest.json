@@ -1,0 +1,66 @@
+[
+  {
+    "badge": {
+      "background": "rgb(252, 232, 231)",
+      "colour": "rgb(157, 42, 40)",
+      "text": "worst lookback measured",
+      "visible": true
+    },
+    "bytes": 210926,
+    "caption": "the two numbers that decide it: characters leaked, and blocks the corpus cannot support",
+    "framed": {
+      "from": "top of page",
+      "to": "precision against prevalence, at the rate this corpus can support"
+    },
+    "from": "docs/report/report.html",
+    "image": "docs/screenshots/report-headline-and-leak.png"
+  },
+  {
+    "badge": {
+      "background": "rgb(252, 232, 231)",
+      "colour": "rgb(157, 42, 40)",
+      "text": "worst lookback measured",
+      "visible": true
+    },
+    "bytes": 182627,
+    "caption": "precision falling below the blocking floor, and the pattern that blows its budget",
+    "framed": {
+      "from": "precision against prevalence, at the rate this corpus can support",
+      "to": "corpus"
+    },
+    "from": "docs/report/report.html",
+    "image": "docs/screenshots/report-precision-and-redos.png"
+  },
+  {
+    "badge": {
+      "background": "rgb(252, 232, 231)",
+      "colour": "rgb(157, 42, 40)",
+      "text": "worst lookback measured",
+      "visible": true
+    },
+    "bytes": 609017,
+    "caption": "all 28 labelled cases, and each detector as a gate and as a signal",
+    "framed": {
+      "from": "corpus",
+      "to": "the fail mode, priced"
+    },
+    "from": "docs/report/report.html",
+    "image": "docs/screenshots/report-corpus-and-posture.png"
+  },
+  {
+    "badge": {
+      "background": "rgb(252, 232, 231)",
+      "colour": "rgb(157, 42, 40)",
+      "text": "worst lookback measured",
+      "visible": true
+    },
+    "bytes": 178814,
+    "caption": "what failing open costs in coverage, and what the run did not establish",
+    "framed": {
+      "from": "the fail mode, priced",
+      "to": "end of page"
+    },
+    "from": "docs/report/report.html",
+    "image": "docs/screenshots/report-failmode-and-caveats.png"
+  }
+]

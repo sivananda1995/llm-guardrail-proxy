@@ -1,0 +1,680 @@
+{
+  "route": "support-assistant",
+  "prevalence": 0.0004,
+  "prevalences": [
+    0.5,
+    0.1,
+    0.01,
+    0.001,
+    0.0001
+  ],
+  "block_precision_floor": 0.5,
+  "detectors": [
+    {
+      "detector": "encoded_payload",
+      "action": "flag",
+      "min_confidence": "low",
+      "gate": {
+        "detector": "encoded_payload",
+        "true_positives": 2,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 26,
+        "attacks": 2,
+        "benign": 26,
+        "tpr": 1.0,
+        "fpr": 0.0,
+        "smallest_measurable_fpr": 0.0385,
+        "resolved_fpr": 0.0385,
+        "precision_at": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        },
+        "precision_at_resolved": {
+          "0.5": 0.962963,
+          "0.1": 0.742857,
+          "0.01": 0.208,
+          "0.001": 0.025366,
+          "0.0001": 0.002594
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        }
+      },
+      "signal": {
+        "detector": "encoded_payload",
+        "true_positives": 2,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 26,
+        "attacks": 2,
+        "benign": 26,
+        "tpr": 1.0,
+        "fpr": 0.0,
+        "smallest_measurable_fpr": 0.0385,
+        "resolved_fpr": 0.0385,
+        "precision_at": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        },
+        "precision_at_resolved": {
+          "0.5": 0.962963,
+          "0.1": 0.742857,
+          "0.01": 0.208,
+          "0.001": 0.025366,
+          "0.0001": 0.002594
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        }
+      },
+      "fpr_interval": [
+        0.0,
+        0.1287
+      ],
+      "benign_needed_for_block": 2499
+    },
+    {
+      "detector": "injection_exfiltration",
+      "action": "block",
+      "min_confidence": "high",
+      "gate": {
+        "detector": "injection_exfiltration",
+        "true_positives": 9,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 19,
+        "attacks": 9,
+        "benign": 19,
+        "tpr": 1.0,
+        "fpr": 0.0,
+        "smallest_measurable_fpr": 0.0526,
+        "resolved_fpr": 0.0526,
+        "precision_at": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        },
+        "precision_at_resolved": {
+          "0.5": 0.95,
+          "0.1": 0.678571,
+          "0.01": 0.161017,
+          "0.001": 0.018664,
+          "0.0001": 0.001897
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        }
+      },
+      "signal": {
+        "detector": "injection_exfiltration",
+        "true_positives": 9,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 19,
+        "attacks": 9,
+        "benign": 19,
+        "tpr": 1.0,
+        "fpr": 0.0,
+        "smallest_measurable_fpr": 0.0526,
+        "resolved_fpr": 0.0526,
+        "precision_at": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        },
+        "precision_at_resolved": {
+          "0.5": 0.95,
+          "0.1": 0.678571,
+          "0.01": 0.161017,
+          "0.001": 0.018664,
+          "0.0001": 0.001897
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        }
+      },
+      "fpr_interval": [
+        0.0,
+        0.1682
+      ],
+      "benign_needed_for_block": 2499
+    },
+    {
+      "detector": "injection_override",
+      "action": "flag",
+      "min_confidence": "low",
+      "gate": {
+        "detector": "injection_override",
+        "true_positives": 2,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 26,
+        "attacks": 2,
+        "benign": 26,
+        "tpr": 1.0,
+        "fpr": 0.0,
+        "smallest_measurable_fpr": 0.0385,
+        "resolved_fpr": 0.0385,
+        "precision_at": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        },
+        "precision_at_resolved": {
+          "0.5": 0.962963,
+          "0.1": 0.742857,
+          "0.01": 0.208,
+          "0.001": 0.025366,
+          "0.0001": 0.002594
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        }
+      },
+      "signal": {
+        "detector": "injection_override",
+        "true_positives": 2,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 26,
+        "attacks": 2,
+        "benign": 26,
+        "tpr": 1.0,
+        "fpr": 0.0,
+        "smallest_measurable_fpr": 0.0385,
+        "resolved_fpr": 0.0385,
+        "precision_at": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        },
+        "precision_at_resolved": {
+          "0.5": 0.962963,
+          "0.1": 0.742857,
+          "0.01": 0.208,
+          "0.001": 0.025366,
+          "0.0001": 0.002594
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        }
+      },
+      "fpr_interval": [
+        0.0,
+        0.1287
+      ],
+      "benign_needed_for_block": 2499
+    },
+    {
+      "detector": "pii_card",
+      "action": "redact",
+      "min_confidence": "low",
+      "gate": {
+        "detector": "pii_card",
+        "true_positives": 1,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 9,
+        "attacks": 1,
+        "benign": 9,
+        "tpr": 1.0,
+        "fpr": 0.0,
+        "smallest_measurable_fpr": 0.1111,
+        "resolved_fpr": 0.1111,
+        "precision_at": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        },
+        "precision_at_resolved": {
+          "0.5": 0.9,
+          "0.1": 0.5,
+          "0.01": 0.083333,
+          "0.001": 0.008929,
+          "0.0001": 0.000899
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        }
+      },
+      "signal": {
+        "detector": "pii_card",
+        "true_positives": 1,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 9,
+        "attacks": 1,
+        "benign": 9,
+        "tpr": 1.0,
+        "fpr": 0.0,
+        "smallest_measurable_fpr": 0.1111,
+        "resolved_fpr": 0.1111,
+        "precision_at": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        },
+        "precision_at_resolved": {
+          "0.5": 0.9,
+          "0.1": 0.5,
+          "0.01": 0.083333,
+          "0.001": 0.008929,
+          "0.0001": 0.000899
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        }
+      },
+      "fpr_interval": [
+        0.0,
+        0.2992
+      ],
+      "benign_needed_for_block": 2499
+    },
+    {
+      "detector": "pii_email",
+      "action": "redact",
+      "min_confidence": "low",
+      "gate": {
+        "detector": "pii_email",
+        "true_positives": 1,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 9,
+        "attacks": 1,
+        "benign": 9,
+        "tpr": 1.0,
+        "fpr": 0.0,
+        "smallest_measurable_fpr": 0.1111,
+        "resolved_fpr": 0.1111,
+        "precision_at": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        },
+        "precision_at_resolved": {
+          "0.5": 0.9,
+          "0.1": 0.5,
+          "0.01": 0.083333,
+          "0.001": 0.008929,
+          "0.0001": 0.000899
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        }
+      },
+      "signal": {
+        "detector": "pii_email",
+        "true_positives": 1,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 9,
+        "attacks": 1,
+        "benign": 9,
+        "tpr": 1.0,
+        "fpr": 0.0,
+        "smallest_measurable_fpr": 0.1111,
+        "resolved_fpr": 0.1111,
+        "precision_at": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        },
+        "precision_at_resolved": {
+          "0.5": 0.9,
+          "0.1": 0.5,
+          "0.01": 0.083333,
+          "0.001": 0.008929,
+          "0.0001": 0.000899
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        }
+      },
+      "fpr_interval": [
+        0.0,
+        0.2992
+      ],
+      "benign_needed_for_block": 2499
+    },
+    {
+      "detector": "secret_pattern",
+      "action": "block",
+      "min_confidence": "high",
+      "gate": {
+        "detector": "secret_pattern",
+        "true_positives": 4,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 34,
+        "attacks": 4,
+        "benign": 34,
+        "tpr": 1.0,
+        "fpr": 0.0,
+        "smallest_measurable_fpr": 0.0294,
+        "resolved_fpr": 0.0294,
+        "precision_at": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        },
+        "precision_at_resolved": {
+          "0.5": 0.971429,
+          "0.1": 0.790698,
+          "0.01": 0.255639,
+          "0.001": 0.032914,
+          "0.0001": 0.003389
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        }
+      },
+      "signal": {
+        "detector": "secret_pattern",
+        "true_positives": 4,
+        "false_negatives": 0,
+        "false_positives": 5,
+        "true_negatives": 29,
+        "attacks": 4,
+        "benign": 34,
+        "tpr": 1.0,
+        "fpr": 0.1471,
+        "smallest_measurable_fpr": 0.0294,
+        "resolved_fpr": 0.1471,
+        "precision_at": {
+          "0.5": 0.871795,
+          "0.1": 0.43038,
+          "0.01": 0.064272,
+          "0.001": 0.006761,
+          "0.0001": 0.00068
+        },
+        "precision_at_resolved": {
+          "0.5": 0.871795,
+          "0.1": 0.43038,
+          "0.01": 0.064272,
+          "0.001": 0.006761,
+          "0.0001": 0.00068
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.1,
+          "0.1": 2.3,
+          "0.01": 15.6,
+          "0.001": 147.9,
+          "0.0001": 1471.4
+        }
+      },
+      "fpr_interval": [
+        0.0,
+        0.1015
+      ],
+      "benign_needed_for_block": 2499
+    },
+    {
+      "detector": "system_prompt_echo",
+      "action": "block",
+      "min_confidence": "high",
+      "gate": {
+        "detector": "system_prompt_echo",
+        "true_positives": 1,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 9,
+        "attacks": 1,
+        "benign": 9,
+        "tpr": 1.0,
+        "fpr": 0.0,
+        "smallest_measurable_fpr": 0.1111,
+        "resolved_fpr": 0.1111,
+        "precision_at": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        },
+        "precision_at_resolved": {
+          "0.5": 0.9,
+          "0.1": 0.5,
+          "0.01": 0.083333,
+          "0.001": 0.008929,
+          "0.0001": 0.000899
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        }
+      },
+      "signal": {
+        "detector": "system_prompt_echo",
+        "true_positives": 1,
+        "false_negatives": 0,
+        "false_positives": 0,
+        "true_negatives": 9,
+        "attacks": 1,
+        "benign": 9,
+        "tpr": 1.0,
+        "fpr": 0.0,
+        "smallest_measurable_fpr": 0.1111,
+        "resolved_fpr": 0.1111,
+        "precision_at": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        },
+        "precision_at_resolved": {
+          "0.5": 0.9,
+          "0.1": 0.5,
+          "0.01": 0.083333,
+          "0.001": 0.008929,
+          "0.0001": 0.000899
+        },
+        "benign_needed_for_block": {
+          "0.5": 1,
+          "0.1": 9,
+          "0.01": 99,
+          "0.001": 999,
+          "0.0001": 9999
+        },
+        "alarms_per_true_positive": {
+          "0.5": 1.0,
+          "0.1": 1.0,
+          "0.01": 1.0,
+          "0.001": 1.0,
+          "0.0001": 1.0
+        }
+      },
+      "fpr_interval": [
+        0.0,
+        0.2992
+      ],
+      "benign_needed_for_block": 2499
+    }
+  ],
+  "blocking_detectors": [
+    "injection_exfiltration",
+    "secret_pattern",
+    "system_prompt_echo"
+  ],
+  "unsupported_blocks": [
+    "injection_exfiltration",
+    "secret_pattern",
+    "system_prompt_echo"
+  ],
+  "benign_needed": 2499,
+  "benign_measured": 9,
+  "signal_false_positives": {
+    "encoded_payload": 0,
+    "injection_exfiltration": 0,
+    "injection_override": 0,
+    "pii_card": 0,
+    "pii_email": 0,
+    "secret_pattern": 5,
+    "system_prompt_echo": 0
+  },
+  "note": "precision is computed at each detector's resolved false positive rate, which is the larger of what was measured and one over the number of benign samples"
+}

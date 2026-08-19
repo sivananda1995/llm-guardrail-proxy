@@ -1,0 +1,64 @@
+{
+  "budget_ms": 7.0,
+  "payload_length": 24,
+  "curve": [
+    {
+      "chars": 12,
+      "naive_ms": 0.0002,
+      "shipped_ms": 0.0001,
+      "over_budget": false
+    },
+    {
+      "chars": 16,
+      "naive_ms": 9.009,
+      "shipped_ms": 0.0004,
+      "over_budget": true
+    },
+    {
+      "chars": 20,
+      "naive_ms": 155.2157,
+      "shipped_ms": 0.0003,
+      "over_budget": true
+    },
+    {
+      "chars": 24,
+      "naive_ms": 2546.8768,
+      "shipped_ms": 0.0004,
+      "over_budget": true
+    }
+  ],
+  "first_length_over_budget": 16,
+  "naive_over_shipped_at_worst": 6547241.4,
+  "outcomes": {
+    "fails open": {
+      "mode": "open",
+      "verdict": "allowed_unchecked",
+      "allowed": true,
+      "exit_code": 1,
+      "unavailable": [
+        "injection_exfiltration"
+      ],
+      "looks_adversarial": [
+        "injection_exfiltration"
+      ],
+      "unchecked_sides": [
+        "prompt"
+      ]
+    },
+    "fails closed": {
+      "mode": "closed",
+      "verdict": "refused",
+      "allowed": false,
+      "exit_code": 0,
+      "unavailable": [
+        "injection_exfiltration"
+      ],
+      "looks_adversarial": [
+        "injection_exfiltration"
+      ],
+      "unchecked_sides": []
+    }
+  },
+  "shipped_verdict": "allowed",
+  "note": "timings are best-of-N on this machine and are only meaningful as ratios; the defence is that detectors are linear time, verified by test, and the timeout is the backstop"
+}

@@ -1,0 +1,130 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONPATH: src:.
+
+jobs:
+  lint-and-test:
+    # No network, no API key, no model. The suite runs the real proxy over the real corpus on every
+    # supported Python, and asserts the wall clock behaviour of every shipped pattern against
+    # adversarial input.
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Lint
+        run: ruff check .
+      - name: Test
+        run: python -m pytest --cov=guardrail --cov-report=xml --cov-report=term
+      - name: Fail if coverage drops below its floor
+        run: |
+          python - <<'PY'
+          import sys, xml.etree.ElementTree as ET
+          floors = {"line-rate": 0.97, "branch-rate": 0.95}
+          root = ET.parse("coverage.xml").getroot()
+          bad = []
+          for key, floor in floors.items():
+              rate = float(root.attrib[key])
+              print(f"{key} {rate:.2%} (floor {floor:.0%})")
+              if rate < floor:
+                  bad.append(key)
+          sys.exit(1 if bad else 0)
+          PY
+
+  corpus:
+    # The corpus is the contract: every labelled case through the real proxy, and a mismatch fails the
+    # build. `guard posture --strict` is deliberately *not* run here, and ADR-004 is the reason: on this
+    # corpus it fails, and wiring a check that always fails into CI gets the check deleted. The posture
+    # is published in the job summary instead, where a human reads it.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Every labelled case through the real proxy
+        run: python -m guardrail.cli corpus
+      - name: The same corpus with the response buffered instead of streamed
+        run: python -m guardrail.cli corpus --buffer
+      - name: Publish the posture to the job summary
+        if: always()
+        run: |
+          {
+            echo '## Is each action supported at the declared prevalence'
+            echo
+            echo '```'
+            python -m guardrail.cli posture || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  experiments:
+    # The published numbers are re-measured from scratch, and a document that quotes a stale one fails
+    # the build. This is the job that keeps the README honest.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Re-run every experiment and re-measure every claim
+        run: python tools/collect_metrics.py
+      - name: Fail if a document disagrees
+        run: python tools/check_numbers.py
+      - name: Build the report
+        run: python -m guardrail.cli report --out docs/report
+      - name: Publish the leak curve to the job summary
+        if: always()
+        run: |
+          {
+            echo '## The leak against the lookback'
+            echo
+            echo '```'
+            python -m guardrail.cli lookback || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: experiment-results
+          path: |
+            docs/experiments/
+            docs/metrics.json
+            docs/report/
+
+  end-to-end:
+    # The demo is the README's own sequence, run through the installed command, so the output in the
+    # documentation is the output the reader gets.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: The whole tour through the installed command
+        run: bash tools/run_demo.sh
